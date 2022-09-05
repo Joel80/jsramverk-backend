@@ -15,7 +15,6 @@ const dsn =
 // Express server
 const port = 1337;
 const express = require("express");
-const { MongoInvalidArgumentError } = require("mongodb");
 const app = express();
 
 // Test server
