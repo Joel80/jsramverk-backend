@@ -12,11 +12,11 @@ var router = express.Router();
 }); */
 
 
-// This route does not work unsure why ...
-router.get('/hello', function(req, res, next) {
+// Hello route 
+router.get("/:msg", function(req, res, next) {
     const data = {
         data: {
-            msg: "Hello world"
+            msg: req.params.msg
         }
     };
 

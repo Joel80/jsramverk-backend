@@ -22,73 +22,10 @@ if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
 
-// Middleware called for all routes.
-// Middleware takes three params
-/* app.use((req, res, next) => {
-    console.log(req.method);
-    console.log(req.path);
-    next();
-}); */
-
+// "Imported routes"
 app.use('/', index);
 
 app.use('/hello', hello);
-
-// A get route
-/* app.get("/", (req, res) => {
-    const data = {
-        data: {
-            msg: "Hello world!"
-        }
-    }
-    res.json(data);
-});
-
-*/
-
-/* app.get("/hello/:msg", (req, res) => {
-    const data = {
-        data: {
-            msg: req.params.msg
-        }
-    };
-
-    res.json(data);
-}); 
- */
-
-
-// A get route
-app.get("/user", (req, res) => {
-    const data = {
-        data: {
-            msg: "Got a GET request, sending back default 200"
-        }
-    }
-    res.json(data);
-});
-
-app.post("/user", (req, res) => {
-    res.status(201).json({
-        data: {
-            msg: "Got a POST request, sending back 201 Created"
-        }
-    });
-});
-
-app.put("/user", (req, res) => {
-
-    // Returns 204 no content
-    res.status(204).send();
-});
-
-app.delete("/user", (req, res) => {
-    // Returns 204 no content
-    res.status(204).send();
-});
-
-// Start the server
-app.listen(port, ()=> console.log(`Example API listening on port ${port}`));
 
 // Add routes for 404 and error handling
 // Catch 404 and forward to error handler
@@ -114,3 +51,41 @@ app.use((err, req, res, next) => {
         ]
     });
 });
+
+app.listen(port, ()=> console.log(`Example API listening on port ${port}`));
+
+// Routes using app.
+
+// A get route
+/* app.get("/user", (req, res) => {
+    const data = {
+        data: {
+            msg: "Got a GET request, sending back default 200"
+        }
+    }
+    res.json(data);
+});
+
+app.post("/user", (req, res) => {
+    res.status(201).json({
+        data: {
+            msg: "Got a POST request, sending back 201 Created"
+        }
+    });
+});
+
+app.put("/user", (req, res) => {
+
+    // Returns 204 no content
+    res.status(204).send();
+});
+
+app.delete("/user", (req, res) => {
+    // Returns 204 no content
+    res.status(204).send();
+}); */
+
+// Start the server
+
+
+
