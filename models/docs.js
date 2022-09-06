@@ -28,6 +28,31 @@ const docs = {
         }
     },
 
+    getOneDocById: async function getOneDocById(req, res) {
+        console.log("Get one");
+        let db;
+        const id = req.params.id;
+        const query = {_id: ObjectId(id) }
+        console.log(query);
+
+        try {
+            db = await database.getDb();
+            const doc = await db.collection.findOne(query);
+            console.log(doc);
+
+            return res.status(200).json({data: doc});
+
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+                title: "Database error",
+                message: error.message
+            });
+        } finally {
+            await db.client.close();
+        }
+    },
+
     saveDoc: async function saveDoc(req, res) {
         let db;
         let doc = {};
@@ -62,7 +87,7 @@ const docs = {
 
         console.log(req.body._id);
         const filter = { _id: ObjectId(req.body._id) };
-        
+
         const updateDoc = { $set: {name: req.body.name, html: req.body.html}, };
 
         try {
