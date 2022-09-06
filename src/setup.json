@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Dokument 1",
+        "html": "<h1>Ett dokument</h1>" 
+    },
+
+    {
+        "name": "Dokument 2",
+        "html": "<h1>Ett dokument</h1>" 
+    }
+]
