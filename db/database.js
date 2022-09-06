@@ -1,7 +1,7 @@
 "use strict";
 const mongo = require("mongodb").MongoClient;
 // const config = require('./config.json);
-const collectionName = "docs";
+const collectionName = "documents";
 
 const name = process.env.NAME;
 const localhost = name + '.local';
@@ -15,10 +15,7 @@ const database = {
             dsn = `mongodb://${localhost}:27017/test` || `mongodb://localhost:27017/test`;
         }
 
-        const client = await mongo.connect(dsn, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        const client = await mongo.connect(dsn);
 
         const db = await client.db();
         const collection = await db.collection(collectionName);
