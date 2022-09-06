@@ -32,6 +32,7 @@ const docs = {
         console.log("Get one");
         let db;
         const id = req.params.id;
+        console.log(id);
         const query = {_id: ObjectId(id) }
         console.log(query);
 
