@@ -1,18 +1,14 @@
-//const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const index = require('./routes/index');
-const hello = require('./routes/hello');
+const docs = require('./routes/docs');
 
 const app = express();
-const port = 1337;
+const port = process.env.PORT || 1337;
 
-//app.use(bodyParser.json()); //for parsing application/json
-//app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
-
-app.use(express.json());
-
+app.use(bodyParser.json()); //for parsing application/json
+app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
 
@@ -23,11 +19,9 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // "Imported routes"
-app.use('/', index);
+app.use('/docs', docs)
 
-app.use('/hello', hello);
-
-// Add routes for 404 and error handling
+// Routes for 404 and error handling
 // Catch 404 and forward to error handler
 // Should be last in code
 app.use((req, res, next) => {
@@ -52,40 +46,5 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(port, ()=> console.log(`Example API listening on port ${port}`));
-
-// Routes using app.
-
-// A get route
-/* app.get("/user", (req, res) => {
-    const data = {
-        data: {
-            msg: "Got a GET request, sending back default 200"
-        }
-    }
-    res.json(data);
-});
-
-app.post("/user", (req, res) => {
-    res.status(201).json({
-        data: {
-            msg: "Got a POST request, sending back 201 Created"
-        }
-    });
-});
-
-app.put("/user", (req, res) => {
-
-    // Returns 204 no content
-    res.status(204).send();
-});
-
-app.delete("/user", (req, res) => {
-    // Returns 204 no content
-    res.status(204).send();
-}); */
-
 // Start the server
-
-
-
+app.listen(port, ()=> console.log(`Example API listening on port ${port}`));
