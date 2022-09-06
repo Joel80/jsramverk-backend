@@ -7,10 +7,11 @@ const docs = require('./routes/docs');
 const app = express();
 const port = process.env.PORT || 1337;
 
+app.use(cors());
+app.options('*', cors());
+
 app.use(bodyParser.json()); //for parsing application/json
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
-app.use(cors());
-
 
 // dont show logs when testing
 if (process.env.NODE_ENV !== 'test') {
@@ -19,7 +20,8 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 // "Imported routes"
-app.use('/docs', docs)
+app.use('/docs', docs);
+
 
 // Routes for 404 and error handling
 // Catch 404 and forward to error handler
