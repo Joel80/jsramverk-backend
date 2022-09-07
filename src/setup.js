@@ -4,6 +4,8 @@
 const name = process.env.NAME;
 const localhost = name + '.local';
 
+console.log(localhost);
+
 const mongo = require("mongodb").MongoClient;
 const dsn =
 `mongodb://${localhost}:27017/docs` || `mongodb://localhost:27017/docs`;
