@@ -7,8 +7,8 @@ const localhost = name + '.local';
 console.log(localhost);
 
 const mongo = require("mongodb").MongoClient;
-const dsn =
-`mongodb://${localhost}:27017/docs` || `mongodb://localhost:27017/docs`;
+const dsn = "mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@cluster0.5vdprdp.mongodb.net/?retryWrites=true&w=majority";
+/* `mongodb://${localhost}:27017/docs` || `mongodb://localhost:27017/docs`; */
 
 const documentModel = require('../models/docs');
 
