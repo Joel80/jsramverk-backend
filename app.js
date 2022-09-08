@@ -20,6 +20,17 @@ if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
 
+// A route
+app.get("/", (req, res) => {
+    const data = {
+        data: {
+            msg: "Hello World"
+        }
+    };
+
+    res.json(data);
+});
+
 // "Imported routes"
 app.use('/docs', docs);
 
