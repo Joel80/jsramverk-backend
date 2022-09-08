@@ -1,3 +1,4 @@
+require('dotenv').config()
 const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
@@ -49,4 +50,4 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-app.listen(port, ()=> console.log(`Example API listening on port ${port}`));
+app.listen(port, ()=> console.log(`API listening on port: ${port}`));
