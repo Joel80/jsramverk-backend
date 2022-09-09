@@ -14,7 +14,6 @@ This project is setup to use a MongoDB at [MongoDB Atlas](https://www.mongodb.co
 ```
 ATLAS_USERNAME="YOUR ATLAS USERNAME"
 ATLAS_PASSWORD="YOUR ATLAS PASSWORD"
-
 ```
 
 Alternatively you can install a local MongoDB and connect to it. For more information see: [MongoDB](https://www.mongodb.com/ 'MongoDB')
