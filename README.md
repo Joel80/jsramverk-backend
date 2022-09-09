@@ -34,11 +34,11 @@ name: document name
 html: html content of the document
 ```
 
-`PUT /docs` Updates a document
+`PUT /docs Updates a document`
 
 Parameters:
 ```
-_id: the documents id
+_id: the document id
 name: document name
 html: html content of the document
 ```
@@ -46,7 +46,7 @@ html: html content of the document
 
 Parameters:
 ```
-_id: the documents id
+_id: the document id
 name: document name
 html: html content of the document
 ```
