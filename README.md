@@ -29,11 +29,10 @@ The API provides the following routes:
 `POST /docs Adds a document to the database`
 
 Parameters:
-
-´´´
+```
 name: document name
 html: html content of the document
-´´´
+```
 
 `PUT /docs` Updates a document
 
@@ -43,7 +42,7 @@ _id: the documents id
 name: document name
 html: html content of the document
 ```
-`POST /docs/update` Alternative POST-route for updating a document
+`POST /docs/update Alternative POST-route for updating a document`
 
 Parameters:
 ```
