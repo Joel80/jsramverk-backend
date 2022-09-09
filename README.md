@@ -17,7 +17,7 @@ ATLAS_PASSWORD="YOUR ATLAS PASSWORD"
 
 ```
 
-Alternatively you can install a local MongoDB and connect to it.For more information see: [MongoDB](https://www.mongodb.com/ 'MongoDB')
+Alternatively you can install a local MongoDB and connect to it. For more information see: [MongoDB](https://www.mongodb.com/ 'MongoDB')
 
 ## Routes
 The API provides the following routes:
@@ -38,7 +38,7 @@ html: html content of the document
 
 Parameters:
 ```
-_id: the document id
+_id:  document id
 name: document name
 html: html content of the document
 ```
@@ -46,7 +46,7 @@ html: html content of the document
 
 Parameters:
 ```
-_id: the document id
+_id:  document id
 name: document name
 html: html content of the document
 ```
