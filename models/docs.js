@@ -6,7 +6,7 @@ const database = require('../db/database');
 const ObjectId = require("mongodb").ObjectId;
 
 const docs = {
-    getAllDocs: async function getAllDocs(req, res) {
+    getAllDocs: async function getAllDocs(res) {
         let db;
 
         try {
