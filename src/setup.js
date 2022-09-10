@@ -1,13 +1,14 @@
 /**
  * Connect to db and setup with default data
  */
+require('dotenv').config()
 const name = process.env.NAME;
 const localhost = name + '.local';
 
 console.log(localhost);
 
 const mongo = require("mongodb").MongoClient;
-const dsn = "mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@cluster0.5vdprdp.mongodb.net/?retryWrites=true&w=majority";
+const dsn = `mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@cluster0.5vdprdp.mongodb.net/?retryWrites=true&w=majority`;
 /* `mongodb://${localhost}:27017/docs` || `mongodb://localhost:27017/docs`; */
 
 const documentModel = require('../models/docs');
