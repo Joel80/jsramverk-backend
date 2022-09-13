@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000 --exit",
     "start": "node app.js",
-    "production": "NODE_ENV='production' node app.js"
+    "production": "NODE_ENV='production' node app.js",
+    "watch": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
