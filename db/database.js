@@ -12,7 +12,7 @@ const database = {
         /* `mongodb://${localhost}:27017/docs` || `mongodb://localhost:27017/docs`; */
 
         if (process.env.NODE_ENV === 'test') {
-            dsn = `mongodb://${localhost}:27017/test` || `mongodb://localhost:27017/test`;
+            dsn = `mongodb://${localhost}:27017/test` //|| `mongodb://localhost:27017/test`;
         }
 
         const client = await mongo.connect(dsn, {
