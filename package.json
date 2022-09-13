@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000 --exit",
+    "local-test": "NODE_ENV='local-test' nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000 --exit",
+    "test": "NODE_ENV='test'nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000 --exit",
     "start": "node app.js",
     "production": "NODE_ENV='production' node app.js",
     "watch": "nodemon app.js"
