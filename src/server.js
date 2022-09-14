@@ -34,7 +34,6 @@ app.get("/list", async (request, response) => {
         console.log(err);
         response.json(err);
     }
-
 });
 
 
@@ -58,7 +57,7 @@ app.listen(port, () => {
  *
  * @return {Promise<array>} The resultset as an array.
  */
- async function findInCollection(dsn, colName, criteria, projection, limit) {
+async function findInCollection(dsn, colName, criteria, projection, limit) {
     const client  = await mongo.connect(dsn);
     const db = await client.db();
     const col = await db.collection(colName);
@@ -91,7 +90,7 @@ const projection2 = {
 const doc = {
     name: "body.name",
     html: "body.html"
-}
+};
 
 const limit2 = 5;
 
@@ -101,8 +100,9 @@ const limit2 = 5;
         let res = await findInCollection(
             dsn, "crowd", criteria2, projection2, limit2
         );
+
         console.log(res);
-    } catch(err) {
+    } catch (err) {
         console.log(err);
     }
 
@@ -110,9 +110,9 @@ const limit2 = 5;
         let res = await addOneToCollection(
             dsn, "crowd", doc
         );
+
         console.log(res);
-    } catch(err) {
+    } catch (err) {
         console.log(err);
     }
-
 })();

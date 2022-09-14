@@ -13,10 +13,10 @@ const docs = {
             db = await database.getDb();
             //console.log(db);
             const resultset = await db.collection.find({}).toArray();
+
             console.log(resultset);
 
             return res.status(200).json({data: resultset});
-
         } catch (error) {
             return res.status(500).json({
                 status: 500,
@@ -33,7 +33,7 @@ const docs = {
         let db;
         const id = req.params.id;
         //console.log(id);
-        const query = {_id: ObjectId(id) }
+        const query = {_id: ObjectId(id) };
         //console.log(query);
 
         try {
@@ -42,7 +42,6 @@ const docs = {
             //console.log(doc);
 
             return res.status(200).json({data: doc});
-
         } catch (error) {
             return res.status(500).json({
                 status: 500,
@@ -68,12 +67,11 @@ const docs = {
             try {
                 db = await database.getDb();
                 const result = await db.collection.insertOne(doc);
-                
+
                 // If there is a result return status 201 and inserted id
                 if (result) {
                     return res.status(201).json({id: result.insertedId });
                 }
-
             } catch (error) {
                 return res.status(500).json({
                     status: 500,
@@ -86,9 +84,8 @@ const docs = {
         } else {
             return res.status(400).json({errors: {
                 message: "name and html needed to save document"
-            }})
+            }});
         }
-        
     },
 
     updateDoc: async function updateDoc(req, res) {
@@ -102,10 +99,9 @@ const docs = {
             try {
                 db = await database.getDb();
                 const result = await db.collection.updateOne(filter, updateDoc);
-                
-                //res.send("Ok");
-                res.status(200).json({message:"Successfully updated"});
 
+                //res.send("Ok");
+                res.status(200).json({message: "Successfully updated"});
             } catch (error) {
                 return res.status(500).json({
                     status: 500,
@@ -118,11 +114,9 @@ const docs = {
         } else {
             return res.status(400).json({errors: {
                 message: "_id needed to update document"
-            }})
+            }});
         }
-
-
     },
-}
+};
 
 module.exports = docs;

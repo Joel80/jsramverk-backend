@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
@@ -40,12 +40,13 @@ app.use('/docs', docs);
 // Should be last in code
 app.use((req, res, next) => {
     var err = new Error("Not found");
+
     err.status = 404;
     next(err);
 });
 
 app.use((err, req, res, next) => {
-    if(res.headersSent) {
+    if (res.headersSent) {
         return next(err);
     }
 

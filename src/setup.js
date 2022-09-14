@@ -1,7 +1,7 @@
 /**
  * Connect to db and setup with default data
  */
-require('dotenv').config()
+require('dotenv').config();
 const name = process.env.NAME;
 const localhost = name + '.local';
 
@@ -21,7 +21,7 @@ const docs = JSON.parse(fs.readFileSync(
 ));
 
 resetCollection(dsn, "documents", docs)
-.catch(err => console.log(err));
+    .catch(err => console.log(err));
 
 async function resetCollection(dsn, colName, docs) {
     const client = await mongo.connect(dsn);

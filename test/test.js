@@ -50,10 +50,10 @@ describe('Documents', () => {
                     res.body.should.be.an("object");
                     res.body.data.should.be.an("array");
                     res.body.data.length.should.be.equal(0);
-    
+
                     done();
                 }
-            );
+                );
         });
     });
 
@@ -62,7 +62,7 @@ describe('Documents', () => {
             let doc = {
                 name: "A name",
                 html: "Some html</br>"
-            }
+            };
 
             chai.request(server)
                 .post("/docs")
@@ -76,13 +76,13 @@ describe('Documents', () => {
                     //console.log(_id);
                     done();
                 }
-            );
+                );
         });
     });
 
     describe('POST /docs', () => {
         it('Should fail to create new doc', (done) => {
-            let doc = {}
+            let doc = {};
 
             chai.request(server)
                 .post("/docs")
@@ -94,19 +94,18 @@ describe('Documents', () => {
                     res.body.errors.message.should.equal("name and html needed to save document");
                     done();
                 }
-            );
+                );
         });
     });
 
 
     describe('PUT /docs', () => {
         it('should update a doc with given id', (done) => {
-
             let doc = {
                 _id: _id,
                 name: "A doc",
                 html: "Some html updated"
-            }
+            };
 
             chai.request(server)
                 .put("/docs")
@@ -118,7 +117,7 @@ describe('Documents', () => {
                     res.body.should.have.property("message");
                     done();
                 }
-            );
+                );
         });
     });
 
@@ -127,7 +126,7 @@ describe('Documents', () => {
             let doc = {
                 name: "A doc",
                 html: "Some html updated"
-            }
+            };
 
             chai.request(server)
                 .put("/docs")
@@ -139,13 +138,12 @@ describe('Documents', () => {
                     res.body.errors.message.should.equal("_id needed to update document");
                     done();
                 }
-            );
+                );
         });
     });
 
     describe('GET /docs/:id', () => {
         it('should get a doc with given id', (done) => {
-
             chai.request(server)
                 .get("/docs/" + _id)
                 .end((err, res) => {
@@ -156,8 +154,7 @@ describe('Documents', () => {
                     res.body.should.have.property("html"); */
                     done();
                 }
-            );
+                );
         });
     });
-    
 });
