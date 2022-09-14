@@ -58,7 +58,7 @@ describe('Documents', () => {
     });
 
     describe('POST /docs', () => {
-        it('Creating new doc', (done) => {
+        it('Should create new doc', (done) => {
             let doc = {
                 name: "A name",
                 html: "Some html</br>"
@@ -74,6 +74,24 @@ describe('Documents', () => {
                     //console.log(res.body.id);
                     _id = res.body.id;
                     //console.log(_id);
+                    done();
+                }
+            );
+        });
+    });
+
+    describe('POST /docs', () => {
+        it('Should fail to create new doc', (done) => {
+            let doc = {}
+
+            chai.request(server)
+                .post("/docs")
+                .send(doc)
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.an("object");
+                    res.body.should.have.property("errors");
+                    res.body.errors.message.should.equal("name and html needed to save document");
                     done();
                 }
             );
