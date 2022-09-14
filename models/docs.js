@@ -32,14 +32,14 @@ const docs = {
         console.log("Get one");
         let db;
         const id = req.params.id;
-        console.log(id);
+        //console.log(id);
         const query = {_id: ObjectId(id) }
-        console.log(query);
+        //console.log(query);
 
         try {
             db = await database.getDb();
             const doc = await db.collection.findOne(query);
-            console.log(doc);
+            //console.log(doc);
 
             return res.status(200).json({data: doc});
 
