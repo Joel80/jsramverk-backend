@@ -94,10 +94,10 @@ describe('Documents', () => {
                 .put("/docs")
                 .send(doc)
                 .end((err, res) => {
-                    res.should.have.status(204);
+                    res.should.have.status(200);
                     res.body.should.be.an("object");
                     console.log(res.body);
-                    //res.body.should.have.property("message");
+                    res.body.should.have.property("message");
                     done();
                 }
             );
