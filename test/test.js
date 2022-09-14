@@ -122,6 +122,27 @@ describe('Documents', () => {
         });
     });
 
+    describe('PUT /docs', () => {
+        it('Should fail to update doc', (done) => {
+            let doc = {
+                name: "A doc",
+                html: "Some html updated"
+            }
+
+            chai.request(server)
+                .put("/docs")
+                .send(doc)
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.an("object");
+                    res.body.should.have.property("errors");
+                    res.body.errors.message.should.equal("_id needed to update document");
+                    done();
+                }
+            );
+        });
+    });
+
     describe('GET /docs/:id', () => {
         it('should get a doc with given id', (done) => {
 
