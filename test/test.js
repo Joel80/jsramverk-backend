@@ -71,21 +71,17 @@ describe('Documents', () => {
                     res.should.have.status(201);
                     res.body.should.be.an("object");
                     res.body.should.have.property("id");
-                    console.log(res.body.id);
+                    //console.log(res.body.id);
                     _id = res.body.id;
-                    console.log(_id);
+                    //console.log(_id);
                     done();
                 }
             );
         });
     });
 
-    console.log(`ID: ${_id}`);
 
     describe('PUT /docs', () => {
-        let result;
-        console.log("Running put");
-        console.log(result);
         it('should update a doc with given id', (done) => {
 
             let doc = {
@@ -108,6 +104,23 @@ describe('Documents', () => {
     
             
   
+        });
+    });
+
+    describe('GET /docs/:id', () => {
+        it('should get a doc with given id', (done) => {
+
+            chai.request(server)
+                .get("/docs/" + _id)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.an("object");
+                    res.body.should.have.property("data");
+                    /* res.body.should.have.property("name");
+                    res.body.should.have.property("html"); */
+                    done();
+                }
+            );
         });
     });
     
