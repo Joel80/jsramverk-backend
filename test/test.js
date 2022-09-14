@@ -3,7 +3,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app.js');
-const ObjectId = require("mongodb").ObjectId;
 
 chai.should();
 

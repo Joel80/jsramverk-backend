@@ -11,8 +11,6 @@ const mongo = require("mongodb").MongoClient;
 const dsn = `mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@cluster0.5vdprdp.mongodb.net/?retryWrites=true&w=majority`;
 /* `mongodb://${localhost}:27017/docs` || `mongodb://localhost:27017/docs`; */
 
-const documentModel = require('../models/docs');
-
 const fs = require("fs");
 const path = require("path");
 const docs = JSON.parse(fs.readFileSync(
