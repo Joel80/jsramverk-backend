@@ -96,7 +96,7 @@ const docs = {
             const result = await db.collection.updateOne(filter, updateDoc);
             
             //res.send("Ok");
-            res.status(200).json({message:"Successfully updated"});
+            res.status(204).json({message:"Successfully updated"});
 
         } catch (error) {
             return res.status(500).json({
