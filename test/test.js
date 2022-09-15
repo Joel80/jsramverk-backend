@@ -149,8 +149,9 @@ describe('Documents', () => { // eslint-disable-line
                     res.should.have.status(200);
                     res.body.should.be.an("object");
                     res.body.should.have.property("data");
-                    /* res.body.should.have.property("name");
-                    res.body.should.have.property("html"); */
+                    res.body.data.should.have.property("_id");
+                    res.body.data.should.have.property("name");
+                    res.body.data.should.have.property("html");
                     done();
                 }
                 );
