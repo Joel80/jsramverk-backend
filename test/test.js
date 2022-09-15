@@ -16,9 +16,9 @@ const collectionName = "documents";
 let _id = "";
 
 
-describe('Documents', () => {
-    before(() => {
-        return new Promise(async (resolve) => {
+describe('Documents', () => { // eslint-disable-line
+    before(() => {            // eslint-disable-line
+        return new Promise(async (resolve) => { // eslint-disable-line
             const db = await database.getDb();
 
             db.db.listCollections(
@@ -40,8 +40,8 @@ describe('Documents', () => {
         });
     });
 
-    describe('GET /docs', () => {
-        it('200 HAPPY PATH', (done) => {
+    describe('GET /docs', () => { // eslint-disable-line
+        it('200 HAPPY PATH', (done) => { // eslint-disable-line
             chai.request(server)
                 .get("/docs")
                 .end((err, res) => {
@@ -56,8 +56,8 @@ describe('Documents', () => {
         });
     });
 
-    describe('POST /docs', () => {
-        it('Should create new doc', (done) => {
+    describe('POST /docs', () => { // eslint-disable-line
+        it('Should create new doc', (done) => { // eslint-disable-line
             let doc = {
                 name: "A name",
                 html: "Some html</br>"
@@ -79,8 +79,8 @@ describe('Documents', () => {
         });
     });
 
-    describe('POST /docs', () => {
-        it('Should fail to create new doc', (done) => {
+    describe('POST /docs', () => { // eslint-disable-line
+        it('Should fail to create new doc', (done) => { // eslint-disable-line
             let doc = {};
 
             chai.request(server)
@@ -98,8 +98,8 @@ describe('Documents', () => {
     });
 
 
-    describe('PUT /docs', () => {
-        it('should update a doc with given id', (done) => {
+    describe('PUT /docs', () => { // eslint-disable-line
+        it('should update a doc with given id', (done) => { // eslint-disable-line
             let doc = {
                 _id: _id,
                 name: "A doc",
@@ -120,8 +120,8 @@ describe('Documents', () => {
         });
     });
 
-    describe('PUT /docs', () => {
-        it('Should fail to update doc', (done) => {
+    describe('PUT /docs', () => { // eslint-disable-line
+        it('Should fail to update doc', (done) => { // eslint-disable-line
             let doc = {
                 name: "A doc",
                 html: "Some html updated"
@@ -141,8 +141,8 @@ describe('Documents', () => {
         });
     });
 
-    describe('GET /docs/:id', () => {
-        it('should get a doc with given id', (done) => {
+    describe('GET /docs/:id', () => { // eslint-disable-line
+        it('should get a doc with given id', (done) => { // eslint-disable-line
             chai.request(server)
                 .get("/docs/" + _id)
                 .end((err, res) => {
