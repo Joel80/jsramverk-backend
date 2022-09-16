@@ -17,27 +17,24 @@ let _id = "";
 
 
 describe('Documents', () => { // eslint-disable-line
-    before(() => {            // eslint-disable-line
-        return new Promise(async (resolve) => { // eslint-disable-line
-            const db = await database.getDb();
+    before( async () => {            // eslint-disable-line
+        const db = await database.getDb();
 
-            db.db.listCollections(
-                { name: collectionName }
-            )
-                .next()
-                .then(async function (info) {
-                    if (info) {
-                        await db.collection.drop();
-                    }
-                })
-                .catch(function (err) {
-                    console.error(err);
-                })
-                .finally(async function () {
-                    await db.client.close();
-                    resolve();
-                });
-        });
+        db.db.listCollections(
+            { name: collectionName }
+        )
+            .next()
+            .then(async function (info) {
+                if (info) {
+                    await db.collection.drop();
+                }
+            })
+            .catch(function (err) {
+                console.error(err);
+            })
+            .finally(async function () {
+                await db.client.close();
+            });
     });
 
     describe('GET /docs', () => { // eslint-disable-line
