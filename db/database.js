@@ -22,6 +22,10 @@ const database = {
             dsn = `mongodb://${localhost}:27017/test`;
         }
 
+        if (process.env.NODE_ENV === 'local-run') {
+            dsn = `mongodb://${localhost}:27017/docs`;
+        }
+
         const client = await mongo.connect(dsn, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
