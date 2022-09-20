@@ -8,7 +8,7 @@
     "postlocal-test": "npm run eslint",
     "test": "NODE_ENV='test' nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000 --exit",
     "posttest": "npm run eslint",
-    "local": "NODE_ENV='local-run' node app.js",
+    "local": "NODE_ENV='local-run' nodemon app.js",
     "start": "node app.js",
     "production": "NODE_ENV='production' node app.js",
     "watch": "nodemon app.js",
