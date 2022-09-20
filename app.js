@@ -4,8 +4,11 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const docs = require('./routes/docs');
+const docsModel = require('./models/docs');
 
 const app = express();
+const httpServer = require('http').createServer(app);
+
 const port = process.env.PORT || 1337;
 
 app.use(cors());
@@ -61,7 +64,35 @@ app.use((err, req, res, next) => {
     });
 });
 
+const io = require('socket.io')(httpServer, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
+
+io.sockets.on('connection', function(socket) {
+    console.log(socket.id); 
+    socket.on('create', function(room) {
+        socket.join(room);
+    });
+
+    socket.on("doc", function (data) {
+        socket.to(data["_id"]).emit("doc", data); //kanske broadcast istället för emit?
+        console.log(`Data: ${data._id} - ${data.name} - ${data.html}`)
+        
+        /* if (data._id) {
+            docsModel.updateDoc(data);
+        }
+         */
+        // Do something with data (save to db)
+        //console.log(data);
+
+    });
+});
+
+
 // Start the server
-const server = app.listen(port, ()=> console.log(`API listening on port: ${port}`));
+const server = httpServer.listen(port, ()=> console.log(`API listening on port: ${port}`));
 
 module.exports = server;
