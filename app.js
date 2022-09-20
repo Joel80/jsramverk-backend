@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const docs = require('./routes/docs');
-const docsModel = require('./models/docs');
+//const docsModel = require('./models/docs');
 
 const app = express();
 const httpServer = require('http').createServer(app);
@@ -72,22 +72,25 @@ const io = require('socket.io')(httpServer, {
 });
 
 io.sockets.on('connection', function(socket) {
-    console.log(socket.id); 
+    console.log(socket.id);
+
     socket.on('create', function(room) {
         socket.join(room);
+        console.log("Room created");
     });
 
     socket.on("doc", function (data) {
-        socket.to(data["_id"]).emit("doc", data); //kanske broadcast istället för emit?
-        console.log(`Data: ${data._id} - ${data.name} - ${data.html}`)
-        
+        //socket.broadcast(data["_id"]).emit("doc", data); //kanske broadcast istället för to?
+        socket.broadcast.emit("doc", data);
+        console.log("Receiving data");
+        console.log(`Data: ${data._id} - ${data.name} - ${data.html}`);
+
         /* if (data._id) {
-            docsModel.updateDoc(data);
+            docsModel.update(data);
         }
          */
         // Do something with data (save to db)
         //console.log(data);
-
     });
 });
 
