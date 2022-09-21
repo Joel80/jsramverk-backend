@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const docs = require('./routes/docs');
-//const docsModel = require('./models/docs');
+const docsModel = require('./models/docs');
 
 const app = express();
 const httpServer = require('http').createServer(app);
@@ -71,6 +71,7 @@ const io = require('socket.io')(httpServer, {
     }
 });
 
+let throttleTimer;
 io.sockets.on('connection', function(socket) {
     console.log(socket.id);
 
@@ -85,15 +86,15 @@ io.sockets.on('connection', function(socket) {
         console.log("Receiving data");
         console.log(`Data: ${data._id} - ${data.name} - ${data.html}`);
 
-        /* if (data._id) {
-            docsModel.update(data);
-        }
-         */
-        // Do something with data (save to db)
-        //console.log(data);
+        clearTimeout(throttleTimer);
+        console.log("writing");
+        throttleTimer = setTimeout(function() {
+            console.log("now it should save to database");
+            docsModel.updateDoc(data);
+        }, 2000);
+        
     });
 });
-
 
 // Start the server
 const server = httpServer.listen(port, ()=> console.log(`API listening on port: ${port}`));
