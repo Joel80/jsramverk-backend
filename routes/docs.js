@@ -64,6 +64,4 @@ router.put(
 
     });
 
-router.post("/update", (req, res) => docsModel.updateDoc(req, res));
-
 module.exports = router;
