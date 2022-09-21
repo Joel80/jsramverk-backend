@@ -24,7 +24,21 @@ router.get(
 
     
 
-router.post("/", (req, res) => docsModel.saveDoc(req, res));
+router.post(
+    "/",
+    async (req, res) => {
+        docsModel.saveDoc(req, res)
+
+        const newDoc = req.body;
+        if (newDoc.name && newDoc.html) {
+            const result = await docsModel.saveDoc(newDoc);
+            return res.status(201).json({id: result.insertedId});
+        } else {
+            return res.status(400).json({errors: {
+                message: "name and html needed to save document"
+            }})
+        }
+    });
 
 router.put("/", (req, res) => docsModel.updateDoc(req, res));
 
