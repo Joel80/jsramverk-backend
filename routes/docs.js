@@ -3,9 +3,26 @@ const router = express.Router();
 
 const docsModel = require('../models/docs');
 
-router.get("/", (req, res) => docsModel.getAllDocs(res));
+router.get(
+    "/", 
+    async (req, res) => {
+       const docs = await docsModel.getAllDocs()
 
-router.get("/:id", (req, res) => docsModel.getOneDocById(req, res));
+       return res.json({
+        data: docs
+       });
+    });
+
+router.get(
+    "/:_id", 
+    async (req, res) => {
+       const doc = await docsModel.getOneDocById(req.params._id)
+       return res.json({
+        data: doc
+        });
+    });
+
+    
 
 router.post("/", (req, res) => docsModel.saveDoc(req, res));
 
