@@ -40,7 +40,29 @@ router.post(
         }
     });
 
-router.put("/", (req, res) => docsModel.updateDoc(req, res));
+router.put(
+    "/", 
+    async (req, res) => {
+
+        let doc = {
+            _id: req.body._id,
+            name: req.body.name,
+            html: req.body.html
+        }
+
+        if (doc._id) {
+            const result = await docsModel.updateDoc(doc);
+            return res.status(200).json({result});
+        } else {
+            return res.status(400).json({errors: {
+                message: "_id needed to update document"
+            }});
+        }
+
+       
+
+
+    });
 
 router.post("/update", (req, res) => docsModel.updateDoc(req, res));
 
