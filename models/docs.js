@@ -57,38 +57,24 @@ const docs = {
         }
     },
 
-    saveDoc: async function saveDoc(req, res) {
+    saveDoc: async function saveDoc(doc) {
         let db;
-        let doc = {};
 
-        if (req.body.name && req.body.html) {
-            let name = req.body.name;
-            let html = req.body.html;
-
-            doc.name = name;
-            doc.html = html;
-
-            try {
-                db = await database.getDb();
-                const result = await db.collection.insertOne(doc);
-
-                // If there is a result return status 201 and inserted id
-                if (result) {
-                    return res.status(201).json({id: result.insertedId });
-                }
-            } catch (error) {
-                return res.status(500).json({
-                    status: 500,
-                    title: "Database error",
-                    message: error.message
-                });
-            } finally {
-                await db.client.close();
-            }
-        } else {
-            return res.status(400).json({errors: {
-                message: "name and html needed to save document"
-            }});
+        try {
+            db = await database.getDb();
+            const result = await db.collection.insertOne(doc);
+            return result;
+        } catch (error) {
+                return {
+                    errors: {
+                        status: 500,
+                        title: "Database error",
+                        message: error.message
+                    }
+                    
+                };
+        } finally {
+            await db.client.close();
         }
     },
 
