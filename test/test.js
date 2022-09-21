@@ -110,7 +110,7 @@ describe('Documents', () => { // eslint-disable-line
                     res.should.have.status(200);
                     res.body.should.be.an("object");
                     console.log(res.body);
-                    res.body.should.have.property("message");
+                    res.body.result.should.have.property("message");
                     done();
                 }
                 );
