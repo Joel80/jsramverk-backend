@@ -41,11 +41,3 @@ _id:  document id
 name: document name
 html: html content of the document
 ```
-`POST /docs/update Alternative POST-route for updating a document`
-
-Parameters:
-```
-_id:  document id
-name: document name
-html: html content of the document
-```
