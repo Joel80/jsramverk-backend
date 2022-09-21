@@ -78,33 +78,29 @@ const docs = {
         }
     },
 
-    updateDoc: async function updateDoc(req, res) {
+    updateDoc: async function updateDoc(doc) {
         let db;
 
-        if (req.body._id) {
-            const filter = { _id: ObjectId(req.body._id) };
+        const filter = { _id: ObjectId(doc._id) };
 
-            const updateDoc = { $set: {name: req.body.name, html: req.body.html}, };
+        const updateDoc = { $set: {name: doc.name, html: doc.html}, };
 
-            try {
-                db = await database.getDb();
-                await db.collection.updateOne(filter, updateDoc);
+        try {
+            db = await database.getDb();
+            await db.collection.updateOne(filter, updateDoc);
 
-                //res.send("Ok");
-                res.status(200).json({message: "Successfully updated"});
-            } catch (error) {
-                return res.status(500).json({
+            return {message: "Successfully updated"};
+
+        } catch (error) {
+            return {
+                errors: {
                     status: 500,
                     title: "Database error",
                     message: error.message
-                });
-            } finally {
-                await db.client.close();
-            }
-        } else {
-            return res.status(400).json({errors: {
-                message: "_id needed to update document"
-            }});
+                }
+            };
+        } finally {
+            await db.client.close();
         }
     },
 };
