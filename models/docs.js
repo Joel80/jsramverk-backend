@@ -6,34 +6,36 @@ const database = require('../db/database');
 const ObjectId = require("mongodb").ObjectId;
 
 const docs = {
-    getAllDocs: async function getAllDocs(res) {
+    getAllDocs: async function getAllDocs() {
         let db;
 
         try {
             db = await database.getDb();
             //console.log(db);
-            const resultset = await db.collection.find({}).toArray();
+            const allDocs = await db.collection.find({}).toArray();
 
-            console.log(resultset);
+            //console.log(resultset);
 
-            return res.status(200).json({data: resultset});
+            return allDocs;
         } catch (error) {
-            return res.status(500).json({
-                status: 500,
-                title: "Database error",
-                message: error.message
-            });
+            return {
+                errors: {
+                    status: 500,
+                    title: "Database error",
+                    message: error.message
+                }
+                
+            };
         } finally {
             await db.client.close();
         }
     },
 
-    getOneDocById: async function getOneDocById(req, res) {
+    getOneDocById: async function getOneDocById(_id) {
         console.log("Get one");
         let db;
-        const id = req.params.id;
         //console.log(id);
-        const query = {_id: ObjectId(id) };
+        const query = {_id: ObjectId(_id) };
         //console.log(query);
 
         try {
@@ -41,13 +43,15 @@ const docs = {
             const doc = await db.collection.findOne(query);
             //console.log(doc);
 
-            return res.status(200).json({data: doc});
+            return doc;
         } catch (error) {
-            return res.status(500).json({
-                status: 500,
-                title: "Database error",
-                message: error.message
-            });
+            return {
+                errors: {
+                    status: 500,
+                    title: "Database error",
+                    message: error.message
+                }
+            };
         } finally {
             await db.client.close();
         }
