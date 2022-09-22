@@ -81,7 +81,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on("doc", function (data) {
-        socket.to(data["_id"]).emit("doc", data); //kanske broadcast istället för to?
+        socket.to(data["_id"]).emit("docUpdate", data); //kanske broadcast istället för to?
         //socket.broadcast.emit("doc", data);
         console.log("Receiving data");
         console.log(`Data: ${data._id} - ${data.name} - ${data.html}`);
