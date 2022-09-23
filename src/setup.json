@@ -1,11 +1,11 @@
 [
     {
         "name": "Dokument 1",
-        "html": "<h1>Ett dokument</h1>" 
+        "html": "Ett dokument" 
     },
 
     {
         "name": "Dokument 2",
-        "html": "<h1>Ett dokument</h1>" 
+        "html": "Ett annat dokument" 
     }
 ]
