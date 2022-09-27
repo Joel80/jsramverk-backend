@@ -5,6 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const docs = require('./routes/docs');
 const docsModel = require('./models/docs');
+const auth = require('./routes/auth');
 
 const app = express();
 const httpServer = require('http').createServer(app);
@@ -36,6 +37,7 @@ app.get("/", (req, res) => {
 
 // "Imported routes"
 app.use('/docs', docs);
+app.use('/auth', auth);
 
 
 // Routes for 404 and error handling
