@@ -1,13 +1,13 @@
 "use strict";
 const mongo = require("mongodb").MongoClient;
 // const config = require('./config.json);
-const collectionName = "documents";
+//const collectionName = "documents";
 
 const name = process.env.NAME;
 const localhost = name + '.local';
 
 const database = {
-    getDb: async function getDb() {
+    getDb: async function getDb(collectionName = "documents") {
         let dsn =
         `mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@`
         + `cluster0.5vdprdp.mongodb.net/?retryWrites=true&w=majority`;
