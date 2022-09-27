@@ -27,7 +27,6 @@ router.get(
 router.post(
     "/",
     async (req, res) => {
-        docsModel.saveDoc(req, res)
 
         const newDoc = req.body;
         if (newDoc.name && newDoc.html) {
