@@ -3,6 +3,8 @@ const router = express.Router();
 
 const docsModel = require('../models/docs');
 
+// TODO add middleware to check for token before performing certain operations (load)
+
 router.get(
     "/", 
     async (req, res) => {

@@ -151,6 +151,8 @@ const auth = {
             })
         });
     }
+
+    // TODO add function for checking token
 }
 
 module.exports = auth;
