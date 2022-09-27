@@ -7,6 +7,8 @@ const saltRounds = 10;
 
 const auth = {
     register: async function register(res, body) {
+
+        let db;
         
         const email = body.email;
         const password = body.password;
@@ -71,6 +73,8 @@ const auth = {
     },
 
     login: async function login(res, body) {
+
+        let db;
         
         const email = body.email;
         const password = body.password;
