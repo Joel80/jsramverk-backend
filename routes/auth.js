@@ -13,4 +13,14 @@ router.post(
     }
 );
 
+router.post(
+    "/login",
+    async (req, res) => {
+
+        const body = req.body;
+
+        authModel.login(res, body);
+    }
+);
+
 module.exports = router;
