@@ -37,7 +37,7 @@ describe('Documents', () => { // eslint-disable-line
             });
     });
 
-    describe('GET /docs', () => { // eslint-disable-line
+    /* describe('GET /docs', () => { // eslint-disable-line
         it('200 HAPPY PATH', (done) => { // eslint-disable-line
             chai.request(server)
                 .get("/docs")
@@ -47,6 +47,21 @@ describe('Documents', () => { // eslint-disable-line
                     res.body.data.should.be.an("array");
                     res.body.data.length.should.be.equal(0);
 
+                    done();
+                }
+                );
+        });
+    }); */
+
+    describe('GET /docs', () => { // eslint-disable-line
+        it('Should get 401 token not valid', (done) => { // eslint-disable-line
+            chai.request(server)
+                .get("/docs")
+                .end((err, res) => {
+                    res.should.have.status(401);
+                    res.body.should.be.an("object");
+                    res.body.should.have.property("errors");
+                    res.body.errors.message.should.equal("Token not valid");
                     done();
                 }
                 );
