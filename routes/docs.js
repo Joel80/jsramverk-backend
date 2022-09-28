@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const docsModel = require('../models/docs');
+const authModel = require('../models/auth');
 
-// TODO add middleware to check for token before performing certain operations (load)
 
 router.get(
-    "/", 
+    "/",
+    (req, res, next) => authModel.checkToken(req, res, next),
     async (req, res) => {
        const docs = await docsModel.getAllDocs()
 
