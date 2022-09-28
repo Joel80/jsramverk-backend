@@ -74,6 +74,7 @@ const io = require('socket.io')(httpServer, {
 });
 
 let throttleTimer;
+
 io.sockets.on('connection', function(socket) {
     console.log(socket.id);
 
@@ -94,7 +95,6 @@ io.sockets.on('connection', function(socket) {
             console.log("now it should save to database");
             docsModel.updateDoc(data);
         }, 2000);
-        
     });
 });
 

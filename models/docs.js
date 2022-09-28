@@ -25,7 +25,7 @@ const docs = {
                     title: "Database error",
                     message: error.message
                 }
-                
+
             };
         } finally {
             await db.client.close();
@@ -64,16 +64,17 @@ const docs = {
         try {
             db = await database.getDb();
             const result = await db.collection.insertOne(doc);
+
             return result;
         } catch (error) {
-                return {
-                    errors: {
-                        status: 500,
-                        title: "Database error",
-                        message: error.message
-                    }
-                    
-                };
+            return {
+                errors: {
+                    status: 500,
+                    title: "Database error",
+                    message: error.message
+                }
+
+            };
         } finally {
             await db.client.close();
         }
@@ -91,7 +92,6 @@ const docs = {
             await db.collection.updateOne(filter, updateDoc);
 
             return {message: "Successfully updated"};
-
         } catch (error) {
             return {
                 errors: {

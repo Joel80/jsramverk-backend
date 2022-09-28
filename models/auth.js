@@ -7,9 +7,8 @@ const saltRounds = 10;
 
 const auth = {
     register: async function register(res, body) {
-
         let db;
-        
+
         const email = body.email;
         const password = body.password;
 
@@ -19,7 +18,7 @@ const auth = {
                     status: 400,
                     message: "E-mail or password is missing",
                 }
-            })
+            });
         }
 
         if (!validator.validate(email)) {
@@ -28,7 +27,7 @@ const auth = {
                     status: 400,
                     message: "Not a correct e-mail format",
                 }
-            })
+            });
         }
 
         bcrypt.hash(password, saltRounds, async function(err, hash) {
@@ -47,7 +46,7 @@ const auth = {
                 const user = {
                     email: email,
                     password: hash
-                }
+                };
 
                 const resultset = await db.collection.insertOne(user);
 
@@ -58,7 +57,7 @@ const auth = {
                         message: "User created",
                         _id: resultset.id,
                     }
-                })
+                });
             } catch (error) {
                 return res.status(500).json({
                     errors: {
@@ -73,9 +72,8 @@ const auth = {
     },
 
     login: async function login(res, body) {
-
         let db;
-        
+
         const email = body.email;
         const password = body.password;
 
@@ -85,7 +83,7 @@ const auth = {
                     status: 400,
                     message: "E-mail or password is missing",
                 }
-            })
+            });
         }
 
         try {
@@ -93,18 +91,18 @@ const auth = {
 
             const query = {
                 email: email,
-            }
+            };
 
             const user = await db.collection.findOne(query);
 
             if (user) {
-                return auth.comparePasswords(res, user, password)
+                return auth.comparePasswords(res, user, password);
             }
             return res.status(401).json({
                 data: {
                     message: "Could not find user",
                 }
-            })
+            });
         } catch (error) {
             return res.status(500).json({
                 errors: {
@@ -129,7 +127,7 @@ const auth = {
             }
 
             if (result) {
-                const payload = { email: user.email }
+                const payload = { email: user.email };
                 const secret = process.env.JWT_SECRET;
 
                 const token = jwt.sign(payload, secret, {expiresIn: "1h"});
@@ -148,29 +146,27 @@ const auth = {
                     status: 401,
                     message: "Password not correct",
                 }
-            })
+            });
         });
     },
 
     checkToken: function checkToken(req, res, next) {
-
         const token = req.headers['x-access-token'];
 
-        jwt.verify(token, process.env.JWT_SECRET, function(err, decoded){
-
+        jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
             if (err) {
                 return res.status(401).json({
                     errors: {
                         status: 401,
                         message: "Token not valid",
                     }
-                })
+                });
             }
 
             // Token is valid continue
             next();
         });
     }
-}
+};
 
 module.exports = auth;
