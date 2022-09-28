@@ -7,17 +7,26 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 const docs = {
-    getAllDocs: async function getAllDocs() {
+    getAllDocs: async function getAllDocs(email) {
         let db;
+
+        console.log(`Email: ${email}`);
 
         try {
             db = await database.getDb();
             //console.log(db);
             const allDocs = await db.collection.find({}).toArray();
 
-            //console.log(resultset);
+            console.log(allDocs);
 
-            return allDocs;
+            let returnArray = [];
+
+            returnArray = allDocs.filter((doc) => doc.allowed_users?.includes(email));
+
+            console.log(returnArray);
+
+            return returnArray;
+
         } catch (error) {
             return {
                 errors: {
