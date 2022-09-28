@@ -9,7 +9,7 @@ router.get(
     "/",
     (req, res, next) => authModel.checkToken(req, res, next),
     async (req, res) => {
-        const docs = await docsModel.getAllDocs();
+        const docs = await docsModel.getAllDocs(req.email);
 
         return res.json({
             data: docs
