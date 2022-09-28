@@ -1,11 +1,13 @@
 [
     {
         "name": "Dokument 1",
-        "html": "Ett dokument" 
+        "html": "Ett dokument",
+        "allowed_users": ["jolf20@bth.se"]
     },
 
     {
         "name": "Dokument 2",
-        "html": "Ett annat dokument" 
+        "html": "Ett annat dokument",
+        "allowed_users": ["jolf20@bth.se"]
     }
 ]
