@@ -164,6 +164,7 @@ const auth = {
             }
 
             // Token is valid continue
+            console.log(decoded);
             next();
         });
     }
