@@ -85,7 +85,7 @@ const docs = {
 
         const filter = { _id: ObjectId(doc._id) };
 
-        const updateDoc = { $set: {name: doc.name, html: doc.html}, };
+        const updateDoc = { $set: {name: doc.name, html: doc.html, allowed_users: doc.allowed_users}, };
 
         try {
             db = await database.getDb();
