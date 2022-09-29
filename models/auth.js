@@ -14,29 +14,38 @@ const auth = {
 
         if (!email || !password) {
             return res.status(400).json({
-                errors: {
-                    status: 400,
-                    message: "E-mail or password is missing",
+                data: {
+                    errors: {
+                        status: 400,
+                        message: "E-mail or password is missing",
+                    }
                 }
+                
             });
         }
 
         if (!validator.validate(email)) {
             return res.status(400).json({
-                errors: {
-                    status: 400,
-                    message: "Not a correct e-mail format",
+                data: {
+                    errors: {
+                        status: 400,
+                        message: "Not a correct e-mail format",
+                    }
                 }
+                
             });
         }
 
         bcrypt.hash(password, saltRounds, async function(err, hash) {
             if (err) {
                 return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        message: "Could not hash password",
+                    data: {
+                        errors: {
+                            status: 500,
+                            message: "Could not hash password",
+                        }
                     }
+                   
                 });
             }
 
@@ -60,10 +69,13 @@ const auth = {
                 });
             } catch (error) {
                 return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        message: "Could not create new user",
+                    data: {
+                        errors: {
+                            status: 500,
+                            message: "Could not create new user",
+                        }
                     }
+                    
                 });
             } finally {
                 await db.client.close();
@@ -79,10 +91,13 @@ const auth = {
 
         if (!email || !password) {
             return res.status(400).json({
-                errors: {
-                    status: 400,
-                    message: "E-mail or password is missing",
+                data: {
+                    errors: {
+                        status: 400,
+                        message: "E-mail or password is missing",
+                    }
                 }
+                
             });
         }
 
@@ -100,15 +115,21 @@ const auth = {
             }
             return res.status(401).json({
                 data: {
-                    message: "Could not find user",
+                    errors: {
+                        message: "Could not find user",
+                    }
                 }
+                
             });
         } catch (error) {
             return res.status(500).json({
-                errors: {
-                    status: 500,
-                    message: "Could not find user",
+                data: {
+                    errors: {
+                        status: 500,
+                        message: "Could not find user",
+                    }
                 }
+               
             });
         } finally {
             await db.client.close();
@@ -119,10 +140,13 @@ const auth = {
         bcrypt.compare(password, user.password, function(err, result) {
             if (err) {
                 return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        message: "Could not decrypt password",
+                    data: {
+                        errors: {
+                            status: 500,
+                            message: "Could not decrypt password",
+                        }
                     }
+                    
                 });
             }
 
@@ -142,9 +166,11 @@ const auth = {
             }
 
             return res.status(401).json({
-                errors: {
-                    status: 401,
-                    message: "Password not correct",
+                data: {
+                    errors: {
+                        status: 401,
+                        message: "Password not correct",
+                    }
                 }
             });
         });
@@ -156,10 +182,13 @@ const auth = {
         jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
             if (err) {
                 return res.status(401).json({
-                    errors: {
-                        status: 401,
-                        message: "Token not valid",
+                    data: {
+                        errors: {
+                            status: 401,
+                            message: "Token not valid",
+                        }
                     }
+                    
                 });
             }
 
