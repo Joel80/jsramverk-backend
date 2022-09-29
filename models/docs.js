@@ -21,7 +21,7 @@ const docs = {
 
             let returnArray = [];
 
-            returnArray = allDocs.filter((doc) => doc.allowed_users?.includes(email));
+            returnArray = allDocs.filter((doc) => doc.allowed_users?.includes(email)); 
 
             console.log(returnArray);
 
