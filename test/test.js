@@ -60,8 +60,8 @@ describe('Documents', () => { // eslint-disable-line
                 .end((err, res) => {
                     res.should.have.status(401);
                     res.body.should.be.an("object");
-                    res.body.should.have.property("errors");
-                    res.body.errors.message.should.equal("Token not valid");
+                    res.body.data.should.have.property("errors");
+                    res.body.data.errors.message.should.equal("Token not valid");
                     done();
                 }
                 );

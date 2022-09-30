@@ -20,7 +20,7 @@ const auth = {
                         message: "E-mail or password is missing",
                     }
                 }
-                
+
             });
         }
 
@@ -32,7 +32,7 @@ const auth = {
                         message: "Not a correct e-mail format",
                     }
                 }
-                
+
             });
         }
 
@@ -45,7 +45,7 @@ const auth = {
                             message: "Could not hash password",
                         }
                     }
-                   
+
                 });
             }
 
@@ -75,7 +75,7 @@ const auth = {
                             message: "Could not create new user",
                         }
                     }
-                    
+
                 });
             } finally {
                 await db.client.close();
@@ -97,7 +97,7 @@ const auth = {
                         message: "E-mail or password is missing",
                     }
                 }
-                
+
             });
         }
 
@@ -119,7 +119,7 @@ const auth = {
                         message: "Could not find user",
                     }
                 }
-                
+
             });
         } catch (error) {
             return res.status(500).json({
@@ -129,7 +129,7 @@ const auth = {
                         message: "Could not find user",
                     }
                 }
-               
+
             });
         } finally {
             await db.client.close();
@@ -146,7 +146,7 @@ const auth = {
                             message: "Could not decrypt password",
                         }
                     }
-                    
+
                 });
             }
 
@@ -188,7 +188,7 @@ const auth = {
                             message: "Token not valid",
                         }
                     }
-                    
+
                 });
             }
 
