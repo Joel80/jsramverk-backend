@@ -13,7 +13,7 @@ const { graphqlHTTP } = require('express-graphql');
 
 const {
     GraphQLSchema
-  } = require("graphql");
+} = require("graphql");
 
 const RootQueryType = require("./graphql/root.js");
 
