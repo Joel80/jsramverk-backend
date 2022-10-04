@@ -7,6 +7,17 @@ const docs = require('./routes/docs');
 const docsModel = require('./models/docs');
 const auth = require('./routes/auth');
 
+const visual = true;
+
+const { graphqlHTTP } = require('express-graphql');
+
+const {
+    GraphQLSchema
+  } = require("graphql");
+
+const RootQueryType = require("./graphql/root.js");
+
+
 const app = express();
 const httpServer = require('http').createServer(app);
 
@@ -23,6 +34,15 @@ if (process.env.NODE_ENV !== 'test') {
     // use morgan to log at command line
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
+
+const schema = new GraphQLSchema({
+    query: RootQueryType
+});
+
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: visual,
+}));
 
 // A route
 app.get("/", (req, res) => {
