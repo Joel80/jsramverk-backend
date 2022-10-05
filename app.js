@@ -5,6 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const docs = require('./routes/docs');
 const docsModel = require('./models/docs');
+const authModel = require('./models/auth');
 const auth = require('./routes/auth');
 
 const visual = true;
@@ -35,14 +36,17 @@ if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
 
+app.use(authModel.checkToken);
+
 const schema = new GraphQLSchema({
     query: RootQueryType
 });
 
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', graphqlHTTP((req) => ({
     schema: schema,
     graphiql: visual,
-}));
+    context: req.email
+})));
 
 // A route
 app.get("/", (req, res) => {
