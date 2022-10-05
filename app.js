@@ -8,7 +8,7 @@ const docsModel = require('./models/docs');
 const authModel = require('./models/auth');
 const auth = require('./routes/auth');
 
-const visual = true;
+const visual = false;
 
 const { graphqlHTTP } = require('express-graphql');
 
