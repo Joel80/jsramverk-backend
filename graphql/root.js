@@ -14,8 +14,10 @@ const RootQueryType = new GraphQLObjectType({
         docs: {
             type: new GraphQLList(DocType),
             description: 'List of documents',
-            resolve: async function() {
-                const docs = await docsModel.getAllDocs("jolf20@bth.se");
+            resolve: async function(root, args, context) {
+                /* console.log("graph:");
+                console.log(context); */
+                const docs = await docsModel.getAllDocs(context);
 
                 return docs;
             }
