@@ -45,7 +45,7 @@ const schema = new GraphQLSchema({
 app.use('/graphql', graphqlHTTP((req) => ({
     schema: schema,
     graphiql: visual,
-    context: req.email
+    context: req
 })));
 
 // A route
