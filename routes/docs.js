@@ -7,7 +7,7 @@ const authModel = require('../models/auth');
 
 router.get(
     "/",
-    (req, res, next) => authModel.checkToken(req, res, next),
+    //(req, res, next) => authModel.checkToken(req, res, next),
     async (req, res) => {
         const docs = await docsModel.getAllDocs(req.email);
 
