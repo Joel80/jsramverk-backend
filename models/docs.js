@@ -17,13 +17,13 @@ const docs = {
             //console.log(db);
             const allDocs = await db.collection.find({}).toArray();
 
-            console.log(allDocs);
+            //console.log(allDocs);
 
             let returnArray = [];
 
             returnArray = allDocs.filter((doc) => doc.allowed_users?.includes(email)); 
 
-            console.log(returnArray);
+            //console.log(returnArray);
 
             return returnArray;
 
