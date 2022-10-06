@@ -27,7 +27,7 @@ const RootQueryType = new GraphQLObjectType({
             type: DocType,
             description: 'A document',
             args: {
-                _id: { type: GraphQLString}
+                _id: { type: GraphQLString }
             },
             resolve: async function (parent, args) {
                 const doc = await docsModel.getOneDocById(args._id);
