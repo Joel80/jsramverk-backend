@@ -177,23 +177,6 @@ const auth = {
     },
 
     checkToken: function checkToken(req, res, next) {
-        console.log(req.path);
-        if (req.path == "/auth/login") {
-            return next();
-        }
-
-        if (req.path == "/auth/register") {
-            return next();
-        }
-
-        if (req.path == "/") {
-            return next();
-        }
-
-        /* if (req.path == "/graphql") {
-            return next();
-        } */
-
         const token = req.headers['x-access-token'];
 
         jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
