@@ -40,7 +40,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use('/auth', auth);
 
 // / route
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
     const data = {
         data: {
             msg: "Hello World"
@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
     };
 
     res.json(data);
-});
+}); */
 
 // Auth middleware for all routes below
 app.use(authModel.checkToken);
