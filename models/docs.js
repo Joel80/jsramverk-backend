@@ -10,7 +10,7 @@ const docs = {
     getAllDocs: async function getAllDocs(email) {
         let db;
 
-        console.log(`Email: ${email}`);
+        //console.log(`Email: ${email}`);
 
         try {
             db = await database.getDb();
@@ -42,7 +42,7 @@ const docs = {
     },
 
     getOneDocById: async function getOneDocById(_id) {
-        console.log("Get one");
+        //console.log("Get one");
         let db;
         //console.log(id);
         const query = {_id: ObjectId(_id) };

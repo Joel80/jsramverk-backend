@@ -8,7 +8,7 @@ chai.should();
 
 chai.use(chaiHttp);
 
-console.log(process.env.NODE_ENV);
+//console.log(process.env.NODE_ENV);
 
 const database = require("../db/database.js");
 const collection1Name = "documents";
