@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const docsModel = require('../models/docs');
-const authModel = require('../models/auth');
+//const authModel = require('../models/auth');
 
 
 router.get(
