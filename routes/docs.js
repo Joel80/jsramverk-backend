@@ -50,7 +50,8 @@ router.put(
         let doc = {
             _id: req.body._id,
             name: req.body.name,
-            html: req.body.html
+            html: req.body.html,
+            allowed_users: req.body.allowed_users
         };
 
         if (doc._id) {
