@@ -36,19 +36,10 @@ if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
 
-app.use(authModel.checkToken);
+// Routes for auth
+app.use('/auth', auth);
 
-const schema = new GraphQLSchema({
-    query: RootQueryType
-});
-
-app.use('/graphql', graphqlHTTP((req) => ({
-    schema: schema,
-    graphiql: visual,
-    context: req
-})));
-
-// A route
+// / route
 app.get("/", (req, res) => {
     const data = {
         data: {
@@ -59,9 +50,22 @@ app.get("/", (req, res) => {
     res.json(data);
 });
 
-// "Imported routes"
+// Auth middleware for all routes below
+app.use(authModel.checkToken);
+
+const schema = new GraphQLSchema({
+    query: RootQueryType
+});
+
+// Route for graphql resolvers
+app.use('/graphql', graphqlHTTP((req) => ({
+    schema: schema,
+    graphiql: visual,
+    context: req
+})));
+
+// Routes for docs
 app.use('/docs', docs);
-app.use('/auth', auth);
 
 
 // Routes for 404 and error handling
