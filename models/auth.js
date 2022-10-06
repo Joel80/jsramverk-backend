@@ -193,7 +193,7 @@ const auth = {
             }
 
             // Token is valid continue
-            console.log(decoded);
+            //console.log(decoded);
             req.email = decoded.email;
             next();
         });
