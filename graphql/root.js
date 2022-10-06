@@ -1,6 +1,7 @@
 const {
     GraphQLObjectType,
     GraphQLList,
+    GraphQLString
 } = require('graphql');
 
 const DocType = require('./doc.js');
@@ -20,6 +21,16 @@ const RootQueryType = new GraphQLObjectType({
                 const docs = await docsModel.getAllDocs(context.email);
 
                 return docs;
+            }
+        },
+        doc: {
+            type: DocType,
+            description: 'A document',
+            args: {
+                _id: { type: GraphQLString}
+            },
+            resolve: async function (parent, args) {
+                const doc = await docsModel.getOneDocById(args._id)
             }
         }
     })
