@@ -18,6 +18,8 @@ const {
 
 const RootQueryType = require("./graphql/root.js");
 
+const RootMutationType = require("./graphql/mutation.js");
+
 
 const app = express();
 const httpServer = require('http').createServer(app);
@@ -54,7 +56,8 @@ app.use('/auth', auth);
 app.use(authModel.checkToken);
 
 const schema = new GraphQLSchema({
-    query: RootQueryType
+    query: RootQueryType,
+    mutation: RootMutationType
 });
 
 // Route for graphql resolvers
