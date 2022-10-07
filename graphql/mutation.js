@@ -1,5 +1,6 @@
 const {
-    GraphQLObjectType,
+    GraphQLObjectType, 
+    GraphQLString,
 } = require('graphql');
 
 const DocType = require('./doc.js');
@@ -13,7 +14,7 @@ const RootMutationType = new GraphQLObjectType({
     description: 'Root Mutation',
     fields: () => ({
         saveDoc: {
-            type: DocType,
+            type: GraphQLString,
             description: 'Saving a new doc',
             args: {
                 doc: { type: DocInputType }
@@ -21,9 +22,14 @@ const RootMutationType = new GraphQLObjectType({
             resolve: async function(parent, args) {
                 /* console.log("graph:");
                 console.log(context); */
-                await docsModel.saveDoc(args.doc);
+                console.log(`Before function call: ${args.doc._id}`);
+                const result = await docsModel.saveDoc(args.doc);
 
-                return args.doc; 
+                console.log(`Result: ${result.insertedId}`)
+
+                console.log(`After function call: ${args.doc._id}`);
+
+                return result.insertedId; 
             }
         },
         updateDoc: {
