@@ -66,4 +66,26 @@ router.put(
         }
     });
 
+router.post(
+    "/user",
+    async (req, res) => {
+        /* console.log("/user");
+        console.log(req.body.user);
+        console.log(req.body.email);
+ */
+        const user = req.body.user;
+
+        const email = req.body.email;
+
+        if (user && email) {
+            const result = await docsModel.emailNewUser(user, email);
+
+            return res.status(201).json({message: "Mailed user"});
+        } else {
+            return res.status(400).json({errors: {
+                message: "User and email needed to mail new user"
+            }});
+        }
+    });
+
 module.exports = router;
