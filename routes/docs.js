@@ -80,7 +80,9 @@ router.post(
         if (user && email) {
             const result = await docsModel.emailNewUser(user, email);
 
-            return res.status(201).json({message: "Mailed user"});
+            if (result) {
+                return res.status(201).json({result});
+            }
         } else {
             return res.status(400).json({errors: {
                 message: "User and email needed to mail new user"
