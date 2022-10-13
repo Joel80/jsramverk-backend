@@ -1,5 +1,5 @@
 const {
-    GraphQLObjectType, 
+    GraphQLObjectType,
     GraphQLString,
 } = require('graphql');
 
@@ -25,11 +25,11 @@ const RootMutationType = new GraphQLObjectType({
                 console.log(`Before function call: ${args.doc._id}`);
                 const result = await docsModel.saveDoc(args.doc);
 
-                console.log(`Result: ${result.insertedId}`)
+                console.log(`Result: ${result.insertedId}`);
 
                 console.log(`After function call: ${args.doc._id}`);
 
-                return result.insertedId; 
+                return result.insertedId;
             }
         },
         updateDoc: {
@@ -39,9 +39,9 @@ const RootMutationType = new GraphQLObjectType({
                 doc: { type: DocInputType }
             },
             resolve: async function (parent, args) {
-              await docsModel.updateDoc(args.doc);
+                await docsModel.updateDoc(args.doc);
 
-              return args.doc;
+                return args.doc;
             }
         }
     })
