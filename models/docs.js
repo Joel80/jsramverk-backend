@@ -96,7 +96,7 @@ const docs = {
 
         const filter = { _id: ObjectId(doc._id) };
 
-        const updateDoc = { $set: {name: doc.name, html: doc.html, allowed_users: doc.allowed_users, code: doc.code}, };
+        const updateDoc = { $set: {name: doc.name, html: doc.html, allowed_users: doc.allowed_users, code: doc.code, comments: code.comments}, };
 
         try {
             db = await database.getDb();

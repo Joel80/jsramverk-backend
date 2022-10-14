@@ -14,7 +14,8 @@ const DocType = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         html: { type: new GraphQLNonNull(GraphQLString) },
         allowed_users: { type: new GraphQLList(GraphQLString) },
-        code: { type: GraphQLBoolean}
+        code: { type: GraphQLBoolean},
+        comments: { type: new GraphQLList(GraphQLString) }
 
     })
 });

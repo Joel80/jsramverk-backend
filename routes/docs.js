@@ -52,7 +52,8 @@ router.put(
             name: req.body.name,
             html: req.body.html,
             allowed_users: req.body.allowed_users,
-            code: req.body.code
+            code: req.body.code,
+            comments: req.body.comments
         };
 
         if (doc._id) {
