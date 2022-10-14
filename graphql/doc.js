@@ -3,7 +3,6 @@ const {
     GraphQLString,
     GraphQLList,
     GraphQLNonNull,
-    GraphQLBoolean,
 } = require('graphql');
 
 const DocType = new GraphQLObjectType({
@@ -14,7 +13,7 @@ const DocType = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         html: { type: new GraphQLNonNull(GraphQLString) },
         allowed_users: { type: new GraphQLList(GraphQLString) },
-        code: { type: GraphQLBoolean},
+        code: { type: GraphQLString },
         comments: { type: new GraphQLList(GraphQLString) }
 
     })
