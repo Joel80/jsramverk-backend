@@ -133,7 +133,7 @@ const docs = {
             to: `${email}`,
             from: 'jolf20@student.bth.se', // Use the email address or domain you verified above
             subject: `${user} invited you to collaborate on a document`,
-            text: `${user} wants to collaborate with you on a document. Please register at http://www.student.bth.se/~jolf20/editor to get started!`,
+            text: `${user} wants to collaborate with you on a document. Please register at www.student.bth.se/~jolf20/editor to get started!`,
         };
 
         console.log(msg);
