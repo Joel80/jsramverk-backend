@@ -1,13 +1,17 @@
 [
     {
+        "code": false,
         "name": "Dokument 1",
         "html": "Ett dokument",
-        "allowed_users": ["jolf20@bth.se"]
+        "allowed_users": ["jolf20@bth.se"],
+        "comments": []
     },
 
     {
+        "code": true,
         "name": "Dokument 2",
-        "html": "Ett annat dokument",
-        "allowed_users": ["jolf2022@bth.se"]
+        "html": "//some comment",
+        "allowed_users": ["jolf20@bth.se"],
+        "comments": []
     }
 ]
